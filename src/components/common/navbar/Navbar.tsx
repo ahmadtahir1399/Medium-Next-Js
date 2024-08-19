@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/common/logos/Logo";
+import Login from "../login/Login";
+import SignUp from "../SignUp/SignUp";
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,21 +31,6 @@ const Navbar: React.FC = () => {
     { name: "Our story", link: "/" },
     { name: "Membership", link: "/" },
   ];
-
-  const DialogTriggerLink = ({ name }) => (
-    <Dialog>
-      <DialogTrigger asChild>
-        <li className="lg:flex md:flex hidden">
-          <span className="second-font cursor-pointer text-sm font-medium text-primarynav">
-            {name}
-          </span>
-        </li>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[670px]">
-        <DialogHeader>{name}</DialogHeader>
-      </DialogContent>
-    </Dialog>
-  );
 
   return (
     <div className="relative">
@@ -67,8 +54,27 @@ const Navbar: React.FC = () => {
                   </Link>
                 </li>
               ))}
-              <DialogTriggerLink name="Write" />
-              <DialogTriggerLink name="Sign in" />
+              <Dialog>
+                <DialogTrigger>
+                  <li className="second-font cursor-pointer text-sm font-medium text-primarynav">
+                    Write
+                  </li>
+                </DialogTrigger>
+                <DialogContent>
+                  <SignUp />
+                </DialogContent>
+              </Dialog>
+
+              <Dialog>
+                <DialogTrigger>
+                  <li className="second-font cursor-pointer text-sm font-medium text-primarynav">
+                    Sign in
+                  </li>
+                </DialogTrigger>
+                <DialogContent>
+                  <Login />
+                </DialogContent>
+              </Dialog>
             </ul>
             <Dialog>
               <DialogTrigger asChild>
@@ -83,7 +89,9 @@ const Navbar: React.FC = () => {
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[670px]">
-                <DialogHeader>Sign up</DialogHeader>
+                <DialogHeader>
+                  <SignUp />
+                </DialogHeader>
               </DialogContent>
             </Dialog>
           </div>
